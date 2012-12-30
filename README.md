@@ -5,7 +5,7 @@ Description
 -----------
 Small android lib allowing you to make a flip imageview easily, by extending FlipImageView.
 
-This lib is based on the FlipAnimator by coomar. All the credits go to him.
+This lib is based on the FlipAnimator by coomar. All the credits goes to him.
 
 License
 -------
