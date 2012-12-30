@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/fr.castorflex.android.flipimageview"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+   <fr.castorflex.android.flipimageview.library.FlipImageView
+       android:id="@+id/imageview"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:scaleType="center"
+       android:layout_gravity="center"
+       android:src="@drawable/ic_action_star_0"
+       app:flipDrawable="@drawable/ic_action_star_10"/>
+
+</LinearLayout>
+

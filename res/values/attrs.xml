@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FlipImageView">
+        <attr name="isAnimated" format="boolean"/>
+        <attr name="isFlipped" format="boolean"/>
+        <attr name="flipDrawable" format="reference"/>
+    </declare-styleable>
+
+
+</resources>
