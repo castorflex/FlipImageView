@@ -19,7 +19,9 @@
        android:scaleType="center"
        android:layout_gravity="center"
        android:src="@drawable/ic_action_star_0"
-       app:flipDrawable="@drawable/ic_action_star_10"/>
+       app:flipDrawable="@drawable/ic_action_star_10"
+       app:duration="1000"
+       app:interpolator="@android:anim/bounce_interpolator"/>
 
 </LinearLayout>
 

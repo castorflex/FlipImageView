@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="FlipImageView">
-        <attr name="isAnimated" format="boolean"/>
-        <attr name="isFlipped" format="boolean"/>
-        <attr name="flipDrawable" format="reference"/>
+        <attr name="isAnimated" format="boolean" />
+        <attr name="isFlipped" format="boolean" />
+        <attr name="flipDrawable" format="reference" />
+        <attr name="duration" format="integer" />
+        <attr name="interpolator" format="reference" />
     </declare-styleable>
 
 

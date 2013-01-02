@@ -9,6 +9,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
 import android.view.animation.Transformation;
 import android.widget.ImageView;
 
@@ -19,6 +21,10 @@ import fr.castorflex.android.flipimageview.R;
  */
 public class FlipImageView extends ImageView implements View.OnClickListener,
         Animation.AnimationListener {
+
+    private static final Interpolator fDefaultInterpolator = new AccelerateDecelerateInterpolator();
+
+    private static final int fDefaultDuration = 500;
 
 
     public interface OnFlipListener {
@@ -63,14 +69,39 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
         mIsDefaultAnimated = a.getBoolean(R.styleable.FlipImageView_isAnimated, true);
         mIsFlipped = a.getBoolean(R.styleable.FlipImageView_isFlipped, false);
         mFlippedDrawable = a.getDrawable(R.styleable.FlipImageView_flipDrawable);
+        int duration = a.getInt(R.styleable.FlipImageView_duration, fDefaultDuration);
+        int interpolatorResId = a.getResourceId(R.styleable.FlipImageView_interpolator, 0);
+        Interpolator interpolator = null;
+        if (interpolatorResId > 0) {
+            interpolator = AnimationUtils.loadInterpolator(context, interpolatorResId);
+        } else {
+            interpolator = fDefaultInterpolator;
+        }
+
         mDrawable = getDrawable();
 
         mAnimation = new FlipAnimator();
         mAnimation.setAnimationListener(this);
+        mAnimation.setInterpolator(interpolator);
+        mAnimation.setDuration(duration);
 
         setOnClickListener(this);
 
         setImageDrawable(mIsFlipped ? mFlippedDrawable : mDrawable);
+
+        a.recycle();
+    }
+
+    public FlipAnimator getAnimation(){
+        return mAnimation;
+    }
+
+    public void setInterpolator(Interpolator interpolator) {
+        mAnimation.setInterpolator(interpolator);
+    }
+
+    public void setDuration(int duration) {
+        mAnimation.setDuration(duration);
     }
 
     public boolean isFlipped() {
@@ -166,7 +197,6 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
         public FlipAnimator() {
             setDuration(500);
             setFillAfter(true);
-            setInterpolator(new AccelerateDecelerateInterpolator());
         }
 
 
