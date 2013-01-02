@@ -92,7 +92,7 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
         a.recycle();
     }
 
-    public FlipAnimator getAnimation(){
+    public FlipAnimator getFlipAnimation(){
         return mAnimation;
     }
 
@@ -195,7 +195,6 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
         }
 
         public FlipAnimator() {
-            setDuration(500);
             setFillAfter(true);
         }
 

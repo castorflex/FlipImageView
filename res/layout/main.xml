@@ -3,12 +3,52 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res/fr.castorflex.android.flipimageview"
     android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:gravity="center">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <fr.castorflex.android.flipimageview.library.FlipImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="24dp"
+            android:src="@drawable/ic_action_star_0"
+            app:flipDrawable="@drawable/ic_action_star_10"/>
+        <fr.castorflex.android.flipimageview.library.FlipImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="24dp"
+            android:src="@drawable/ic_action_star_0"
+            app:flipDrawable="@drawable/ic_action_star_10"
+            app:duration="1000"
+            app:interpolator="@android:anim/anticipate_overshoot_interpolator"/>
+        <fr.castorflex.android.flipimageview.library.FlipImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="24dp"
+            android:src="@drawable/ic_action_star_0"
+            app:flipDrawable="@drawable/ic_action_star_10"
+            app:interpolator="@android:anim/overshoot_interpolator"/>
+        <fr.castorflex.android.flipimageview.library.FlipImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="24dp"
+            android:src="@drawable/ic_action_star_0"
+            app:flipDrawable="@drawable/ic_action_star_10"
+            app:interpolator="@android:anim/decelerate_interpolator"/>
+        </LinearLayout>
 
     <TextView
         android:id="@+id/textview"
+        android:layout_marginTop="24dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
