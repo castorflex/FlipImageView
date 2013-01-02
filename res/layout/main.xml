@@ -18,7 +18,9 @@
             android:layout_weight="1"
             android:padding="24dp"
             android:src="@drawable/ic_action_star_0"
-            app:flipDrawable="@drawable/ic_action_star_10"/>
+            app:flipDrawable="@drawable/ic_action_star_10"
+            app:flipRotations="x"/>
+
         <fr.castorflex.android.flipimageview.library.FlipImageView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -26,8 +28,10 @@
             android:padding="24dp"
             android:src="@drawable/ic_action_star_0"
             app:flipDrawable="@drawable/ic_action_star_10"
-            app:duration="1000"
-            app:interpolator="@android:anim/anticipate_overshoot_interpolator"/>
+            app:flipDuration="1000"
+            app:flipInterpolator="@android:anim/anticipate_overshoot_interpolator"
+            app:flipRotations="z"/>
+
         <fr.castorflex.android.flipimageview.library.FlipImageView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -35,7 +39,8 @@
             android:padding="24dp"
             android:src="@drawable/ic_action_star_0"
             app:flipDrawable="@drawable/ic_action_star_10"
-            app:interpolator="@android:anim/overshoot_interpolator"/>
+            app:flipInterpolator="@android:anim/overshoot_interpolator" />
+
         <fr.castorflex.android.flipimageview.library.FlipImageView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -43,8 +48,8 @@
             android:padding="24dp"
             android:src="@drawable/ic_action_star_0"
             app:flipDrawable="@drawable/ic_action_star_10"
-            app:interpolator="@android:anim/decelerate_interpolator"/>
-        </LinearLayout>
+            app:flipInterpolator="@android:anim/decelerate_interpolator" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textview"
@@ -60,8 +65,9 @@
        android:layout_gravity="center"
        android:src="@drawable/ic_action_star_0"
        app:flipDrawable="@drawable/ic_action_star_10"
-       app:duration="1000"
-       app:interpolator="@android:anim/bounce_interpolator"/>
+       app:flipDuration="5000"
+       app:flipInterpolator="@android:anim/bounce_interpolator"
+       app:flipRotations="y|x|z"/>
 
 </LinearLayout>
 

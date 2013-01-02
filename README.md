@@ -17,10 +17,11 @@ XML Usage
        android:layout_height="match_parent"
        android:src="@drawable/YOUR_DEFAULT_DRAWABLE"
        fiv:flipDrawable="@drawable/YOUR_FLIPPED_DRAWABLE"
-       fiv:duration="YOUR_DURATION_IN_MS"
-       fiv:interpolator="@android:anim/YOUR_INTERPOLATOR"
+       fiv:flipDuration="YOUR_DURATION_IN_MS"
+       fiv:flipInterpolator="@android:anim/YOUR_INTERPOLATOR"
        fiv:isAnimated="true|false"
-       fiv:isFlipped="true|false"/>
+       fiv:isFlipped="true|false"
+       fiv:flipRotations="none|x|y|z"/>
 ```
 
 License

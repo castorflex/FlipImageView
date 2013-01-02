@@ -4,8 +4,14 @@
         <attr name="isAnimated" format="boolean" />
         <attr name="isFlipped" format="boolean" />
         <attr name="flipDrawable" format="reference" />
-        <attr name="duration" format="integer" />
-        <attr name="interpolator" format="reference" />
+        <attr name="flipDuration" format="integer" />
+        <attr name="flipInterpolator" format="reference" />
+        <attr name="flipRotations">
+            <flag name="none" value="0" />
+            <flag name="x" value="1" />
+            <flag name="y" value="2" />
+            <flag name="z" value="4" />
+        </attr>
     </declare-styleable>
 
 

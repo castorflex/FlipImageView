@@ -22,9 +22,17 @@ import fr.castorflex.android.flipimageview.R;
 public class FlipImageView extends ImageView implements View.OnClickListener,
         Animation.AnimationListener {
 
+    private static final int FLAG_ROTATION_X = 1 << 0;
+
+    private static final int FLAG_ROTATION_Y = 1 << 1;
+
+    private static final int FLAG_ROTATION_Z = 1 << 2;
+
     private static final Interpolator fDefaultInterpolator = new AccelerateDecelerateInterpolator();
 
     private static final int fDefaultDuration = 500;
+
+        private static final int fDefaultRotation = FLAG_ROTATION_Y;
 
 
     public interface OnFlipListener {
@@ -48,6 +56,12 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
 
     private FlipAnimator mAnimation;
 
+    private boolean mIsRotationXEnabled;
+
+    private boolean mIsRotationYEnabled;
+
+    private boolean mIsRotationZEnabled;
+
     public FlipImageView(Context context) {
         super(context);
         init(context, null, 0);
@@ -69,14 +83,18 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
         mIsDefaultAnimated = a.getBoolean(R.styleable.FlipImageView_isAnimated, true);
         mIsFlipped = a.getBoolean(R.styleable.FlipImageView_isFlipped, false);
         mFlippedDrawable = a.getDrawable(R.styleable.FlipImageView_flipDrawable);
-        int duration = a.getInt(R.styleable.FlipImageView_duration, fDefaultDuration);
-        int interpolatorResId = a.getResourceId(R.styleable.FlipImageView_interpolator, 0);
+        int duration = a.getInt(R.styleable.FlipImageView_flipDuration, fDefaultDuration);
+        int interpolatorResId = a.getResourceId(R.styleable.FlipImageView_flipInterpolator, 0);
         Interpolator interpolator = null;
         if (interpolatorResId > 0) {
             interpolator = AnimationUtils.loadInterpolator(context, interpolatorResId);
         } else {
             interpolator = fDefaultInterpolator;
         }
+        int rotations = a.getInteger(R.styleable.FlipImageView_flipRotations, fDefaultRotation);
+        mIsRotationXEnabled = (rotations & FLAG_ROTATION_X) != 0;
+        mIsRotationYEnabled = (rotations & FLAG_ROTATION_Y) != 0;
+        mIsRotationZEnabled = (rotations & FLAG_ROTATION_Z) != 0;
 
         mDrawable = getDrawable();
 
@@ -92,7 +110,31 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
         a.recycle();
     }
 
-    public FlipAnimator getFlipAnimation(){
+    public boolean isRotationXEnabled() {
+        return mIsRotationXEnabled;
+    }
+
+    public void setRotationXEnabled(boolean enabled) {
+        mIsRotationXEnabled = enabled;
+    }
+
+    public boolean isRotationYEnabled() {
+        return mIsRotationYEnabled;
+    }
+
+    public void setRotationYEnabled(boolean enabled) {
+        mIsRotationYEnabled = enabled;
+    }
+
+    public boolean isRotationZEnabled() {
+        return mIsRotationZEnabled;
+    }
+
+    public void setRotationZEnabled(boolean enabled) {
+        mIsRotationZEnabled = enabled;
+    }
+
+    public FlipAnimator getFlipAnimation() {
         return mAnimation;
     }
 
@@ -236,7 +278,9 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
 
             camera.save();
             camera.translate(0.0f, 0.0f, (float) (150.0 * Math.sin(radians)));
-            camera.rotateY(degrees);
+            camera.rotateX(mIsRotationXEnabled ? degrees : 0);
+            camera.rotateY(mIsRotationYEnabled ? degrees : 0);
+            camera.rotateZ(mIsRotationZEnabled ? degrees : 0);
             camera.getMatrix(matrix);
             camera.restore();
 
