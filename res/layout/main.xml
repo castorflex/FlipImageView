@@ -1,73 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res/fr.castorflex.android.flipimageview"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:padding="16dp"
+    android:gravity="center_horizontal">
+
+    <fr.castorflex.android.flipimageview.library.FlipImageView
+        android:id="@+id/imageview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="center"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_action_star_0"
+        app:flipDrawable="@drawable/ic_action_star_10"
+        app:flipDuration="5000"
+        app:flipInterpolator="@android:anim/bounce_interpolator"
+        app:flipRotations="y|x|z" />
+
+    <TextView
+        android:id="@+id/textview"
+        android:layout_marginTop="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
+
+    <SeekBar
+        android:id="@+id/seekbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
+        android:max="5000"
+        android:progress="500" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
 
-        <fr.castorflex.android.flipimageview.library.FlipImageView
-            android:layout_width="0dp"
+        <TextView
             android:layout_height="wrap_content"
+            android:layout_width="0dp"
             android:layout_weight="1"
-            android:padding="24dp"
-            android:src="@drawable/ic_action_star_0"
-            app:flipDrawable="@drawable/ic_action_star_10"
-            app:flipRotations="x"/>
+            android:text="duration:" />
 
-        <fr.castorflex.android.flipimageview.library.FlipImageView
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/textview_duration"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="24dp"
-            android:src="@drawable/ic_action_star_0"
-            app:flipDrawable="@drawable/ic_action_star_10"
-            app:flipDuration="1000"
-            app:flipInterpolator="@android:anim/anticipate_overshoot_interpolator"
-            app:flipRotations="z"/>
-
-        <fr.castorflex.android.flipimageview.library.FlipImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="24dp"
-            android:src="@drawable/ic_action_star_0"
-            app:flipDrawable="@drawable/ic_action_star_10"
-            app:flipInterpolator="@android:anim/overshoot_interpolator" />
-
-        <fr.castorflex.android.flipimageview.library.FlipImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="24dp"
-            android:src="@drawable/ic_action_star_0"
-            app:flipDrawable="@drawable/ic_action_star_10"
-            app:flipInterpolator="@android:anim/decelerate_interpolator" />
+            android:layout_width="wrap_content"
+            android:text="500" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textview"
-        android:layout_marginTop="24dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
+        android:minHeight="48dp"
+        android:gravity="center">
 
-   <fr.castorflex.android.flipimageview.library.FlipImageView
-       android:id="@+id/imageview"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:scaleType="center"
-       android:layout_gravity="center"
-       android:src="@drawable/ic_action_star_0"
-       app:flipDrawable="@drawable/ic_action_star_10"
-       app:flipDuration="5000"
-       app:flipInterpolator="@android:anim/bounce_interpolator"
-       app:flipRotations="y|x|z"/>
+        <CheckBox
+            android:id="@+id/checkedtextview_x"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Rot. X" />
+
+        <CheckBox
+            android:id="@+id/checkedtextview_y"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Rot. Y"
+            android:checked="true"/>
+
+        <CheckBox
+            android:id="@+id/checkedtextview_z"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Rot. Z" />
+
+    </LinearLayout>
+
 
 </LinearLayout>
 

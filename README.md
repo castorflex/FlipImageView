@@ -19,9 +19,9 @@ XML Usage
        fiv:flipDrawable="@drawable/YOUR_FLIPPED_DRAWABLE"
        fiv:flipDuration="YOUR_DURATION_IN_MS"
        fiv:flipInterpolator="@android:anim/YOUR_INTERPOLATOR"
+       fiv:flipRotations="none|x|y|z"
        fiv:isAnimated="true|false"
-       fiv:isFlipped="true|false"
-       fiv:flipRotations="none|x|y|z"/>
+       fiv:isFlipped="true|false"/>
 ```
 
 License
