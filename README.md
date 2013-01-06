@@ -7,6 +7,8 @@ Small android lib allowing you to make a flip imageview easily, by extending Fli
 
 This lib is based on the FlipAnimator by coomar. All the credits goes to him.
 
+Check the sample app here https://play.google.com/store/apps/details?id=fr.castorflex.android.flipimageview
+
 XML Usage
 ---------
 ```xml
