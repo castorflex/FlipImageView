@@ -2,14 +2,17 @@ package fr.castorflex.android.flipimageview.library;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.Camera;
 import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.Transformation;
 import android.widget.ImageView;
@@ -28,11 +31,15 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
 
     private static final int FLAG_ROTATION_Z = 1 << 2;
 
-    private static final Interpolator fDefaultInterpolator = new AccelerateDecelerateInterpolator();
+    private static final Interpolator fDefaultInterpolator = new DecelerateInterpolator();
 
-    private static final int fDefaultDuration = 500;
+    private static int sDefaultDuration;
 
-        private static final int fDefaultRotation = FLAG_ROTATION_Y;
+    private static int sDefaultRotations;
+
+    private static boolean sDefaultAnimated;
+
+    private static boolean sDefaultFlipped;
 
 
     public interface OnFlipListener {
@@ -78,20 +85,21 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
     }
 
     private void init(Context context, AttributeSet attrs, int defStyle) {
+        sDefaultDuration = context.getResources().getInteger(R.integer.default_fiv_duration);
+        sDefaultRotations = context.getResources().getInteger(R.integer.default_fiv_rotations);
+        sDefaultAnimated = context.getResources().getBoolean(R.bool.default_fiv_isAnimated);
+        sDefaultFlipped = context.getResources().getBoolean(R.bool.default_fiv_isFlipped);
+
         TypedArray a = context
                 .obtainStyledAttributes(attrs, R.styleable.FlipImageView, defStyle, 0);
-        mIsDefaultAnimated = a.getBoolean(R.styleable.FlipImageView_isAnimated, true);
-        mIsFlipped = a.getBoolean(R.styleable.FlipImageView_isFlipped, false);
+        mIsDefaultAnimated = a.getBoolean(R.styleable.FlipImageView_isAnimated, sDefaultAnimated);
+        mIsFlipped = a.getBoolean(R.styleable.FlipImageView_isFlipped, sDefaultFlipped);
         mFlippedDrawable = a.getDrawable(R.styleable.FlipImageView_flipDrawable);
-        int duration = a.getInt(R.styleable.FlipImageView_flipDuration, fDefaultDuration);
+        int duration = a.getInt(R.styleable.FlipImageView_flipDuration, sDefaultDuration);
         int interpolatorResId = a.getResourceId(R.styleable.FlipImageView_flipInterpolator, 0);
-        Interpolator interpolator = null;
-        if (interpolatorResId > 0) {
-            interpolator = AnimationUtils.loadInterpolator(context, interpolatorResId);
-        } else {
-            interpolator = fDefaultInterpolator;
-        }
-        int rotations = a.getInteger(R.styleable.FlipImageView_flipRotations, fDefaultRotation);
+        Interpolator interpolator = interpolatorResId > 0 ? AnimationUtils
+                .loadInterpolator(context, interpolatorResId) : fDefaultInterpolator;
+        int rotations = a.getInteger(R.styleable.FlipImageView_flipRotations, sDefaultRotations);
         mIsRotationXEnabled = (rotations & FLAG_ROTATION_X) != 0;
         mIsRotationYEnabled = (rotations & FLAG_ROTATION_Y) != 0;
         mIsRotationZEnabled = (rotations & FLAG_ROTATION_Z) != 0;
@@ -289,3 +297,4 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
         }
     }
 }
+
