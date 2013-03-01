@@ -68,6 +68,8 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
     private boolean mIsRotationYEnabled;
 
     private boolean mIsRotationZEnabled;
+	
+	private boolean mIsFlipping;
 
     public FlipImageView(Context context) {
         super(context);
@@ -157,7 +159,9 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
     public boolean isFlipped() {
         return mIsFlipped;
     }
-
+    public boolean isFlipping() {
+        return mIsFlipping;
+    }
     public boolean isAnimated() {
         return mIsDefaultAnimated;
     }
@@ -209,6 +213,7 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
         if (mListener != null) {
             mListener.onFlipStart();
         }
+		mIsFlipping = true;
     }
 
     @Override
@@ -216,6 +221,7 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
         if (mListener != null) {
             mListener.onFlipEnd();
         }
+		mIsFlipping = false;
     }
 
     @Override
