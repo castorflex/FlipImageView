@@ -118,6 +118,7 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
         setOnClickListener(this);
 
         setImageDrawable(mIsFlipped ? mFlippedDrawable : mDrawable);
+        mIsFlipping = false;
 
         a.recycle();
     }
