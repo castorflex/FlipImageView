@@ -17,7 +17,8 @@
         app:flipDrawable="@drawable/ic_action_star_10"
         app:flipDuration="5000"
         app:flipInterpolator="@android:anim/bounce_interpolator"
-        app:flipRotations="y|x|z" />
+        app:flipRotations="y|x|z"
+        app:reverseRotation="true"/>
 
     <TextView
         android:id="@+id/textview"

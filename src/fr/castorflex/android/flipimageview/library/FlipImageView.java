@@ -2,14 +2,11 @@ package fr.castorflex.android.flipimageview.library;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
 import android.graphics.Camera;
 import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
@@ -41,6 +38,8 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
 
     private static boolean sDefaultFlipped;
 
+    private static boolean sDefaultIsRotationReversed;
+
 
     public interface OnFlipListener {
 
@@ -71,6 +70,8 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
 	
 	private boolean mIsFlipping;
 
+    private boolean mIsRotationReversed;
+
     public FlipImageView(Context context) {
         super(context);
         init(context, null, 0);
@@ -91,9 +92,9 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
         sDefaultRotations = context.getResources().getInteger(R.integer.default_fiv_rotations);
         sDefaultAnimated = context.getResources().getBoolean(R.bool.default_fiv_isAnimated);
         sDefaultFlipped = context.getResources().getBoolean(R.bool.default_fiv_isFlipped);
+        sDefaultIsRotationReversed = context.getResources().getBoolean(R.bool.default_fiv_isRotationReversed);
 
-        TypedArray a = context
-                .obtainStyledAttributes(attrs, R.styleable.FlipImageView, defStyle, 0);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FlipImageView, defStyle, 0);
         mIsDefaultAnimated = a.getBoolean(R.styleable.FlipImageView_isAnimated, sDefaultAnimated);
         mIsFlipped = a.getBoolean(R.styleable.FlipImageView_isFlipped, sDefaultFlipped);
         mFlippedDrawable = a.getDrawable(R.styleable.FlipImageView_flipDrawable);
@@ -107,6 +108,7 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
         mIsRotationZEnabled = (rotations & FLAG_ROTATION_Z) != 0;
 
         mDrawable = getDrawable();
+        mIsRotationReversed = a.getBoolean(R.styleable.FlipImageView_reverseRotation, sDefaultIsRotationReversed);
 
         mAnimation = new FlipAnimator();
         mAnimation.setAnimationListener(this);
@@ -159,9 +161,19 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
     public boolean isFlipped() {
         return mIsFlipped;
     }
+
     public boolean isFlipping() {
         return mIsFlipping;
     }
+
+    public boolean isRotationReversed(){
+        return mIsRotationReversed;
+    }
+
+    public void setRotationReversed(boolean rotationReversed){
+        mIsRotationReversed = rotationReversed;
+    }
+
     public boolean isAnimated() {
         return mIsDefaultAnimated;
     }
@@ -241,8 +253,6 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
 
         private float centerY;
 
-        private boolean forward = true;
-
         private boolean visibilitySwapped;
 
         public void setToDrawable(Drawable to) {
@@ -284,7 +294,7 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
                 }
             }
 
-            if (forward) {
+            if (mIsRotationReversed) {
                 degrees = -degrees;
             }
 
