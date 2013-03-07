@@ -97,7 +97,6 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FlipImageView, defStyle, 0);
         mIsDefaultAnimated = a.getBoolean(R.styleable.FlipImageView_isAnimated, sDefaultAnimated);
         mIsFlipped = a.getBoolean(R.styleable.FlipImageView_isFlipped, sDefaultFlipped);
-        mFlippedDrawable = a.getDrawable(R.styleable.FlipImageView_flipDrawable);
         int duration = a.getInt(R.styleable.FlipImageView_flipDuration, sDefaultDuration);
         int interpolatorResId = a.getResourceId(R.styleable.FlipImageView_flipInterpolator, 0);
         Interpolator interpolator = interpolatorResId > 0 ? AnimationUtils
@@ -107,7 +106,17 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
         mIsRotationYEnabled = (rotations & FLAG_ROTATION_Y) != 0;
         mIsRotationZEnabled = (rotations & FLAG_ROTATION_Z) != 0;
 
-        mDrawable = getDrawable();
+        // Check if a Drawable is set in the view //
+        if(getDrawable() != null){
+        	mDrawable = getDrawable();
+        	setImageDrawable(mIsFlipped ? mFlippedDrawable : mDrawable);
+        }
+        // Check if a FlipDrawable is set in the view //        
+        if(a.getDrawable(R.styleable.FlipImageView_flipDrawable) != null){
+            mFlippedDrawable = a.getDrawable(R.styleable.FlipImageView_flipDrawable);
+            setImageDrawable(mIsFlipped ? mFlippedDrawable : mDrawable);
+        }
+
         mIsRotationReversed = a.getBoolean(R.styleable.FlipImageView_reverseRotation, sDefaultIsRotationReversed);
 
         mAnimation = new FlipAnimator();
@@ -117,7 +126,6 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
 
         setOnClickListener(this);
 
-        setImageDrawable(mIsFlipped ? mFlippedDrawable : mDrawable);
         mIsFlipping = false;
 
         a.recycle();
@@ -191,6 +199,16 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
         if (flipped != mIsFlipped) {
             toggleFlip(animated);
         }
+    }
+	
+	public void setDrawable(Drawable drawable) {
+        mDrawable = drawable;
+        setImageDrawable(mIsFlipped ?  mFlippedDrawable: mDrawable);
+    }
+
+    public void setFlippedDrawable(Drawable drawable) {
+        mFlippedDrawable = drawable;
+        setImageDrawable(mIsFlipped ? mFlippedDrawable : mDrawable);
     }
 
     public void toggleFlip() {
