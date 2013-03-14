@@ -89,6 +89,13 @@
             android:text="Rot. Z" />
 
     </LinearLayout>
+    
+    
+		<CheckBox
+			android:id="@+id/checkedtextview_reverse"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Reverse rotation" />
 
 
 </LinearLayout>

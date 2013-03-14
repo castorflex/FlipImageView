@@ -290,6 +290,10 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
             // calculated both in radians and in the equivalent degrees.
             final double radians = Math.PI * interpolatedTime;
             float degrees = (float) (180.0 * radians / Math.PI);
+            
+            if(mIsRotationReversed){ 
+            	degrees = -degrees;
+            }
 
             // Once we reach the midpoint in the animation, we need to hide the
             // source view and show the destination view. We also need to change
@@ -297,16 +301,12 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
             // flipped around. This is the main problem with SDK sample, it does not
             // do this.
             if (interpolatedTime >= 0.5f) {
-                degrees -= 180.f;
+            	if(mIsRotationReversed){ degrees += 180.f; } else{ degrees -= 180.f; }
 
                 if (!visibilitySwapped) {
                     setImageDrawable(toDrawable);
                     visibilitySwapped = true;
                 }
-            }
-
-            if (mIsRotationReversed) {
-                degrees = -degrees;
             }
 
             final Matrix matrix = t.getMatrix();
