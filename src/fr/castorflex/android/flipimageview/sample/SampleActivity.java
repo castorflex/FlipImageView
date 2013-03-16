@@ -53,6 +53,8 @@ public class SampleActivity extends Activity implements FlipImageView.OnFlipList
     private CheckBox mCheckBoxY;
 
     private CheckBox mCheckBoxZ;
+    
+    private CheckBox mCheckBoxReverse;
 
     private TextView mTextViewAnimationListener;
 
@@ -72,6 +74,7 @@ public class SampleActivity extends Activity implements FlipImageView.OnFlipList
         mCheckBoxX = (CheckBox) findViewById(R.id.checkedtextview_x);
         mCheckBoxY = (CheckBox) findViewById(R.id.checkedtextview_y);
         mCheckBoxZ = (CheckBox) findViewById(R.id.checkedtextview_z);
+        mCheckBoxReverse = (CheckBox) findViewById(R.id.checkedtextview_reverse);
 
         mSpinner.setAdapter(
                 new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, fData));
@@ -90,6 +93,7 @@ public class SampleActivity extends Activity implements FlipImageView.OnFlipList
         mFlipImageView.setRotationXEnabled(mCheckBoxX.isChecked());
         mFlipImageView.setRotationYEnabled(mCheckBoxY.isChecked());
         mFlipImageView.setRotationZEnabled(mCheckBoxZ.isChecked());
+        mFlipImageView.setRotationReversed(mCheckBoxReverse.isChecked());
     }
 
     @Override
