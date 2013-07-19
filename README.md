@@ -26,6 +26,8 @@ XML Usage
        fiv:isFlipped="true|false"/>
 ```
 
+You will find a more detailed explanation here http://castorflex.github.io/blog/2013/04/16/flip-your-imageviews/
+
 License
 -------
 
