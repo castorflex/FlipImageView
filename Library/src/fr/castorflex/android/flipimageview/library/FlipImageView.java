@@ -43,11 +43,11 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
 
     public interface OnFlipListener {
 
-        public void onClick(boolean flipped);
+        public void onClick(FlipImageView view);
 
-        public void onFlipStart();
+        public void onFlipStart(FlipImageView view);
 
-        public void onFlipEnd();
+        public void onFlipEnd(FlipImageView view);
     }
 
     private OnFlipListener mListener;
@@ -227,14 +227,14 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
     public void onClick(View v) {
         toggleFlip();
         if (mListener != null) {
-            mListener.onClick(mIsFlipped);
+            mListener.onClick(this);
         }
     }
 
     @Override
     public void onAnimationStart(Animation animation) {
         if (mListener != null) {
-            mListener.onFlipStart();
+            mListener.onFlipStart(this);
         }
 		mIsFlipping = true;
     }
@@ -242,7 +242,7 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
     @Override
     public void onAnimationEnd(Animation animation) {
         if (mListener != null) {
-            mListener.onFlipEnd();
+            mListener.onFlipEnd(this);
         }
 		mIsFlipping = false;
     }
