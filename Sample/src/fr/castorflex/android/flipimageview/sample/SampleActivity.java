@@ -87,7 +87,7 @@ public class SampleActivity extends Activity implements FlipImageView.OnFlipList
     /////////////////////FLIP IMAGE VIEW///////////////////
 
     @Override
-    public void onClick(boolean flipped) {
+    public void onClick(FlipImageView view) {
         mFlipImageView.setInterpolator(fInterpolators[mSpinner.getSelectedItemPosition()]);
         mFlipImageView.setDuration(mSeekBar.getProgress());
         mFlipImageView.setRotationXEnabled(mCheckBoxX.isChecked());
@@ -97,12 +97,12 @@ public class SampleActivity extends Activity implements FlipImageView.OnFlipList
     }
 
     @Override
-    public void onFlipStart() {
+    public void onFlipStart(FlipImageView view) {
         mTextViewAnimationListener.setText("OnFlipStart");
     }
 
     @Override
-    public void onFlipEnd() {
+    public void onFlipEnd(FlipImageView view) {
         mTextViewAnimationListener.setText("OnFlipEnd");
     }
 
