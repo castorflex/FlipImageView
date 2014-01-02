@@ -36,3 +36,5 @@ License
 You can do whatever you want with this stuff.
 If we meet some day, and you think this stuff is worth it, you can buy me a beer in return.
 ```
+
+[![Analytics](https://ga-beacon.appspot.com/UA-32954204-2/FlipImageView/readme)](https://github.com/igrigorik/ga-beacon)
