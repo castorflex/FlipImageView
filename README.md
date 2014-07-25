@@ -1,3 +1,5 @@
+This library is deprecated. You should be compatible API 14+ and make your own animations. Just rotate on your axis and add a small Z translation.
+
 FlipImageView
 ==================
 
