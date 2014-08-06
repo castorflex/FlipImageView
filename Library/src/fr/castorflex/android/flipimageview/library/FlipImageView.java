@@ -208,6 +208,8 @@ public class FlipImageView extends ImageView implements View.OnClickListener,
     }
 
     public void toggleFlip(boolean animated) {
+        clearAnimation();
+        
         if (animated) {
             mAnimation.setToDrawable(mIsFlipped ? mDrawable : mFlippedDrawable);
             startAnimation(mAnimation);
